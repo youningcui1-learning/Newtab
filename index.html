@@ -1,43 +1,83 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>My Tools - 国人专用</title>
+    <title>01011 - 终极工具箱</title>
     <style>
-        body { background-color: #1a0033; color: #e0e0e0; font-family: sans-serif; padding: 40px; text-align: center; }
-        .box { background: #2e004f; padding: 25px; border-radius: 15px; border: 2px solid #7a00cc; max-width: 700px; margin: 20px auto; text-align: left; }
-        h1 { color: #bc13fe; text-align: center; }
-        h3 { color: #00ffcc; margin-top: 0; }
-        .code { background: #000; color: #0f0; padding: 10px; word-break: break-all; font-family: monospace; font-size: 12px; border-radius: 5px; margin-bottom: 10px; border: 1px solid #333; }
-        p { margin-bottom: 8px; font-weight: bold; }
+        body { background-color: #0d001a; color: #e0e0e0; font-family: 'Courier New', monospace; padding: 20px; text-align: center; }
+        .container { max-width: 800px; margin: auto; }
+        
+        /* 霓虹发光标题 */
+        h1 { 
+            color: #bc13fe; 
+            font-size: 4em; 
+            margin-bottom: 10px;
+            animation: glow 1.5s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #7a00cc, 0 0 20px #7a00cc; }
+            to { text-shadow: 0 0 20px #bc13fe, 0 0 30px #bc13fe, 0 0 40px #bc13fe; }
+        }
+
+        .counter { margin-bottom: 30px; opacity: 0.8; }
+        .section-title { color: #00ffcc; margin-top: 30px; border-bottom: 1px solid #333; padding-bottom: 5px; text-align: left; text-transform: uppercase; letter-spacing: 2px; }
+        .box { background: #1a0033; padding: 20px; border-radius: 12px; border: 1px solid #7a00cc; margin-bottom: 15px; text-align: left; transition: 0.3s; }
+        .box:hover { box-shadow: 0 0 15px #bc13fe; background: #25004d; }
+        .code-area { background: #000; color: #0f0; padding: 10px; border-radius: 5px; font-size: 11px; word-break: break-all; margin: 10px 0; border: 1px solid #444; }
+        button { background: #7a00cc; color: white; border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; width: 100%; font-size: 14px; }
+        button:hover { background: #bc13fe; box-shadow: 0 0 10px #bc13fe; }
+        p { font-size: 0.85em; color: #aaa; margin: 5px 0; }
     </style>
 </head>
 <body>
-    <h1>01011</h1>
+    <div class="container">
+        <h1>01011</h1>
 
-    <div class="box">
-        <h3>网页伪装器 (Embed Website)</h3>
-        <p>用法：点击书签后输入网址，在当前页打开伪装层。</p>
-        <div class="code">javascript:(function(){var url=prompt("输入网址:");if(url){var win=window.open();var ifr=win.document.createElement('iframe');ifr.style="position:fixed;width:100vw;height:100vh;top:0;left:0;border:none;";ifr.src=url.includes('://')?url:'https://'+url;win.document.body.appendChild(ifr);}})();</div>
+        <div class="counter">
+            <p>基地访问量统计：</p>
+            <img src="https://count.getloli.com/get/@youningcui1-01011?theme=moebooru" alt="访问计数" />
+        </div>
+
+        <h2 class="section-title">核心工具</h2>
+        <div class="box">
+            <h3>标签页伪装</h3>
+            <div class="code-area" id="p1">javascript:(function(){var link=document.querySelector("link[rel*='icon']")||document.createElement('link');link.type='image/x-icon';link.rel='shortcut icon';link.href='https://www.google.com/favicon.ico';document.getElementsByTagName('head')[0].appendChild(link);document.title='Google Search';})();</div>
+            <button onclick="copy('p1')">复制脚本</button>
+        </div>
+
+        <div class="box">
+            <h3>网页套娃</h3>
+            <div class="code-area" id="p2">javascript:(function(){var url=prompt("输入网址:");if(url){var win=window.open();var ifr=win.document.createElement('iframe');ifr.style="position:fixed;width:100vw;height:100vh;top:0;left:0;border:none;";ifr.src=url.includes('://')?url:'https://'+url;win.document.body.appendChild(ifr);}})();</div>
+            <button onclick="copy('p2')">复制脚本</button>
+        </div>
+
+        <h2 class="section-title">恶作剧系列</h2>
+        <div class="box">
+            <h3>网页粉碎机</h3>
+            <div class="code-area" id="m1">javascript:(function(){document.body.style.cursor='crosshair';document.addEventListener('click',function(e){e.preventDefault();e.target.parentNode.removeChild(e.target);},false);})();</div>
+            <button onclick="copy('m1')">复制脚本</button>
+        </div>
+
+        <div class="box">
+            <h3>网页地震</h3>
+            <div class="code-area" id="t1">javascript:(function(){var s=document.createElement('style');s.innerHTML='@keyframes shake{0%{transform:translate(1px,1px) rotate(0deg);}10%{transform:translate(-1px,-2px) rotate(-1deg);}20%{transform:translate(-3px,0px) rotate(1deg);}50%{transform:translate(1px,2px) rotate(0deg);}100%{transform:translate(1px,-2px) rotate(-1deg);}} body{animation:shake 0.1s infinite;}';document.head.appendChild(s);})();</div>
+            <button onclick="copy('t1')">复制脚本</button>
+        </div>
+
+        <div class="box">
+            <h3>彩虹变色</h3>
+            <div class="code-area" id="t3">javascript:(function(){var d=document.body; d.style.transition='background 1s'; setInterval(function(){d.style.backgroundColor='hsl('+Math.random()*360+',50%,50%)';},1000);})();</div>
+            <button onclick="copy('t3')">复制脚本</button>
+        </div>
     </div>
 
-    <div class="box">
-        <h3>网页编辑器 (Edit Mode)</h3>
-        <p>用法：点一下即可直接修改网页上的文字，再点一下关闭。</p>
-        <div class="code">javascript:document.body.contentEditable='true'; document.designMode='on'; void 0</div>
-    </div>
-
-    <div class="box">
-        <h3>强制深色模式</h3>
-        <p>用法：为任何网站开启护眼黑色主题。</p>
-        <div class="code">javascript:(function(){var style=document.createElement('style'),css='html{filter:invert(100%) huerotate(180deg)} img,video{filter:invert(100%) huerotate(180deg)}';style.styleSheet?style.styleSheet.cssText=css:style.appendChild(document.createTextNode(css));document.getElementsByTagName('head')[0].appendChild(style);})();</div>
-    </div>
-
-    <div class="box">
-        <h3>解除右键/复制限制</h3>
-        <p>用法：解除那些不让你右键或复制文字的网站限制。</p>
-        <div class="code">javascript:(function(){function clip(e){e.stopPropagation();}document.addEventListener('contextmenu',clip,true);document.addEventListener('copy',clip,true);document.addEventListener('selectstart',clip,true);})();</div>
-    </div>
-
+    <script>
+        function copy(id) {
+            var text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text).then(function() {
+                alert("脚本已成功存入你的剪贴板");
+            });
+        }
+    </script>
 </body>
 </html>
