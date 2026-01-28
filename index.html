@@ -2,18 +2,42 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>My Tools</title>
+    <title>My Tools - 国人专用</title>
     <style>
         body { background-color: #1a0033; color: #e0e0e0; font-family: sans-serif; padding: 40px; text-align: center; }
-        .box { background: #2e004f; padding: 25px; border-radius: 15px; border: 2px solid #7a00cc; max-width: 600px; margin: auto; }
-        .code { background: #000; color: #0f0; padding: 10px; word-break: break-all; font-family: monospace; }
+        .box { background: #2e004f; padding: 25px; border-radius: 15px; border: 2px solid #7a00cc; max-width: 700px; margin: 20px auto; text-align: left; }
+        h1 { color: #bc13fe; text-align: center; }
+        h3 { color: #00ffcc; margin-top: 0; }
+        .code { background: #000; color: #0f0; padding: 10px; word-break: break-all; font-family: monospace; font-size: 12px; border-radius: 5px; margin-bottom: 10px; border: 1px solid #333; }
+        p { margin-bottom: 8px; font-weight: bold; }
     </style>
 </head>
 <body>
     <h1>01011</h1>
+
     <div class="box">
-        <p>type JavaScript to bookmark url box：</p>
+        <h3>网页伪装器 (Embed Website)</h3>
+        <p>用法：点击书签后输入网址，在当前页打开伪装层。</p>
         <div class="code">javascript:(function(){var url=prompt("输入网址:");if(url){var win=window.open();var ifr=win.document.createElement('iframe');ifr.style="position:fixed;width:100vw;height:100vh;top:0;left:0;border:none;";ifr.src=url.includes('://')?url:'https://'+url;win.document.body.appendChild(ifr);}})();</div>
     </div>
+
+    <div class="box">
+        <h3>网页编辑器 (Edit Mode)</h3>
+        <p>用法：点一下即可直接修改网页上的文字，再点一下关闭。</p>
+        <div class="code">javascript:document.body.contentEditable='true'; document.designMode='on'; void 0</div>
+    </div>
+
+    <div class="box">
+        <h3>强制深色模式</h3>
+        <p>用法：为任何网站开启护眼黑色主题。</p>
+        <div class="code">javascript:(function(){var style=document.createElement('style'),css='html{filter:invert(100%) huerotate(180deg)} img,video{filter:invert(100%) huerotate(180deg)}';style.styleSheet?style.styleSheet.cssText=css:style.appendChild(document.createTextNode(css));document.getElementsByTagName('head')[0].appendChild(style);})();</div>
+    </div>
+
+    <div class="box">
+        <h3>解除右键/复制限制</h3>
+        <p>用法：解除那些不让你右键或复制文字的网站限制。</p>
+        <div class="code">javascript:(function(){function clip(e){e.stopPropagation();}document.addEventListener('contextmenu',clip,true);document.addEventListener('copy',clip,true);document.addEventListener('selectstart',clip,true);})();</div>
+    </div>
+
 </body>
 </html>
