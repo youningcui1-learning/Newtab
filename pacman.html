@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pac-Man 简化版</title>
+    <style>
+        body { background: black; color: white; text-align: center; font-family: sans-serif; }
+        canvas { border: 2px solid blue; background: black; }
+        .controls { margin-top: 10px; color: #888; }
+    </style>
+</head>
+<body>
+    <h1>PAC-MAN</h1>
+    <canvas id="game" width="400" height="400"></canvas>
+    <div class="controls">使用方向键移动吃掉所有豆子！</div>
+
+    <script>
+        const canvas = document.getElementById('game');
+        const ctx = canvas.getContext('2d');
+        let pacman = { x: 50, y: 50, size: 20, dir: 'right' };
+        let dots = [];
+
+        // 生成一些豆子
+        for(let i=0; i<10; i++) {
+            for(let j=0; j<10; j++) {
+                dots.push({x: i*40 + 20, y: j*40 + 20, eaten: false});
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 画豆子
+            ctx.fillStyle = "yellow";
+            dots.forEach(dot => {
+                if(!dot.eaten) {
+                    ctx.beginPath();
+                    ctx.arc(dot.x, dot.y, 2, 0, Math.PI*2);
+                    ctx.fill();
+                }
+            });
+
+            // 画吃豆人
+            ctx.fillStyle = "yellow";
+            ctx.beginPath();
+            let startAngle = 0.2 * Math.PI;
+            let endAngle = 1.8 * Math.PI;
+            if(pacman.dir === 'left') { startAngle = 1.2 * Math.PI; endAngle = 0.8 * Math.PI; }
+            ctx.moveTo(pacman.x, pacman.y);
+            ctx.arc(pacman.x, pacman.y, pacman.size/2, startAngle, endAngle);
+            ctx.fill();
+
+            // 检测碰撞
+            dots.forEach(dot => {
+                if(!dot.eaten && Math.hypot(pacman.x - dot.x, pacman.y - dot.y) < 10) {
+                    dot.eaten = true;
+                }
+            });
+        }
+
+        window.addEventListener('keydown', e => {
+            if(e.key === 'ArrowRight') { pacman.x += 10; pacman.dir = 'right'; }
+            if(e.key === 'ArrowLeft') { pacman.x -= 10; pacman.dir = 'left'; }
+            if(e.key === 'ArrowUp') pacman.y -= 10;
+            if(e.key === 'ArrowDown') pacman.y += 10;
+            draw();
+        });
+
+        draw();
+    </script>
+</body>
+</html>
