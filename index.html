@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>我的经典游戏合集</title>
+    <style>
+        body { background: #121212; color: white; font-family: 'Microsoft YaHei', sans-serif; text-align: center; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 50px; }
+        .game-card {
+            width: 200px; height: 150px; background: #333; border: 2px solid #444;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            border-radius: 15px; cursor: pointer; text-decoration: none; color: white;
+            transition: 0.3s;
+        }
+        .game-card:hover { border-color: #00ff00; transform: scale(1.1); box-shadow: 0 0 20px #00ff00; }
+        .game-card h3 { margin: 10px 0; }
+        .icon { font-size: 40px; }
+        .locked { opacity: 0.5; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+    <h1>🕹️ 我的 20 款经典游戏合集 🕹️</h1>
+    <div class="container">
+        <a href="snake.html" class="game-card">
+            <div class="icon">🐍</div>
+            <h3>贪吃蛇</h3>
+        </a>
+        <a href="2048.html" class="game-card">
+            <div class="icon">🔢</div>
+            <h3>2048</h3>
+        </a>
+
+        <div class="game-card locked">
+            <div class="icon">🧮</div>
+            <h3>数独 (开发中)</h3>
+        </div>
+        <div class="game-card locked">
+            <div class="icon">🔒</div>
+            <h3>吃豆人 (待添加)</h3>
+        </div>
+        </div>
+</body>
+</html>
