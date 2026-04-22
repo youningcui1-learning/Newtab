@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>经典数独</title>
+    <style>
+        body { text-align: center; font-family: sans-serif; background: #f0f0f0; }
+        #grid { display: grid; grid-template-columns: repeat(9, 40px); gap: 1px; justify-content: center; margin-top: 20px; background: #333; border: 2px solid #333; }
+        input { width: 40px; height: 40px; text-align: center; font-size: 20px; border: none; outline: none; }
+        input:nth-child(3n) { border-right: 2px solid #333; }
+        .row-sep:nth-child(n+19):nth-child(-n+27), .row-sep:nth-child(n+46):nth-child(-n+54) { border-bottom: 2px solid #333; }
+        button { margin-top: 20px; padding: 10px 20px; font-size: 16px; cursor: pointer; background: #28a745; color: white; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h1>数独挑战</h1>
+    <div id="grid"></div>
+    <button onclick="checkResult()">检查结果</button>
+
+    <script>
+        // 简化的数独题目 (0代表空位)
+        const board = [
+            [5,3,0,0,7,0,0,0,0], [6,0,0,1,9,5,0,0,0], [0,9,8,0,0,0,0,6,0],
+            [8,0,0,0,6,0,0,0,3], [4,0,0,8,0,3,0,0,1], [7,0,0,0,2,0,0,0,6],
+            [0,6,0,0,0,0,2,8,0], [0,0,0,4,1,9,0,0,5], [0,0,0,0,8,0,0,7,9]
+        ];
+
+        const gridDiv = document.getElementById('grid');
+        board.flat().forEach((val, i) => {
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.max = 9; input.min = 1;
+            if (val !== 0) { input.value = val; input.readOnly = true; input.style.background = '#eee'; }
+            gridDiv.appendChild(input);
+        });
+
+        function checkResult() {
+            alert("逻辑检查已触发！在完整版中，这里会验证你的数字是否正确。加油！");
+        }
+    </script>
+</body>
+</html>
