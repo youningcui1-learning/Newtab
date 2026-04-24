@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>井字棋</title>
+    <style>
+        .cell { width: 100px; height: 100px; border: 2px solid #333; display: inline-flex; justify-content: center; align-items: center; font-size: 40px; cursor: pointer; vertical-align: top; }
+        #board { width: 310px; margin: 50px auto; }
+        body { text-align: center; font-family: sans-serif; }
+    </style>
+</head>
+<body>
+    <h1>井字棋</h1>
+    <div id="board"></div>
+    <script>
+        let turn = 'X';
+        const board = document.getElementById('board');
+        for (let i = 0; i < 9; i++) {
+            const cell = document.createElement('div');
+            cell.className = 'cell';
+            cell.onclick = () => {
+                if (!cell.innerText) {
+                    cell.innerText = turn;
+                    turn = turn === 'X' ? 'O' : 'X';
+                }
+            };
+            board.appendChild(cell);
+        }
+    </script>
+</body>
+</html>
