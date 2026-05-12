@@ -11,7 +11,7 @@
 <body>
     <h1>SNAKE GAME</h1>
     <canvas id="snake" width="400" height="400"></canvas>
-    <p>使用方向键控制 | 得分: <span id="score">0</span></p>
+    <p>use arrows to control | score: <span id="score">0</span></p>
 
     <script>
         const canvas = document.getElementById("snake");
@@ -65,7 +65,7 @@
 
             if(snakeX < 0 || snakeX >= canvas.width || snakeY < 0 || snakeY >= canvas.height || collision(newHead, snake)) {
                 clearInterval(game);
-                alert("游戏结束! 得分: " + score);
+                alert("game over! score: " + score);
                 location.reload();
             }
             snake.unshift(newHead);
