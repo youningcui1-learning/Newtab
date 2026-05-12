@@ -21,7 +21,7 @@
 </head>
 <body>
     <h1>2048</h1>
-    <div class="score-board">分数: <span id="score">0</span></div>
+    <div class="score-board">score: <span id="score">0</span></div>
     <div id="game-container"></div>
 
     <script>
@@ -97,7 +97,7 @@
         }
 
         function checkGameOver() {
-            if (!grid.includes(0)) alert("格子满了！想办法继续合并！");
+            if (!grid.includes(0)) alert("game over！");
         }
 
         window.onkeydown = (e) => {
